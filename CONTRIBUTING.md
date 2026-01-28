@@ -85,12 +85,14 @@ test(e2e): add tests for pagination
 
 2. **PR title:** Follow the same format as commit messages
 
-3. **PR description should include:**
+3. **Use the PR template:** A template will auto-populate when creating PRs. Fill in all sections.
+
+4. **PR description should include:**
    - Summary of changes
    - How to test the changes
    - Any breaking changes
 
-4. **Keep PRs focused:** One feature or fix per PR
+5. **Keep PRs focused:** One feature or fix per PR
 
 ## Testing Guidelines
 
