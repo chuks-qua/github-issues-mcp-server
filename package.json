@@ -1,17 +1,23 @@
 {
-  "name": "git-relationship-mcp",
+  "name": "github-issues-mcp-server",
   "version": "1.0.0",
   "description": "MCP server for managing GitHub issue relationships - tracking dependencies, blockers, and sub-issues",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "github-issues-mcp": "dist/index.js"
+    "github-issues-mcp-server": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "vitest run tests/e2e"
   },
   "keywords": [
     "mcp",
@@ -29,8 +35,12 @@
   },
   "devDependencies": {
     "@types/node": "^25.0.10",
+    "@vitest/coverage-v8": "^4.0.18",
+    "execa": "^9.6.1",
+    "msw": "^2.12.7",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=18.0.0"
