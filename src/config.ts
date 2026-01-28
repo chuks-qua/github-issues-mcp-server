@@ -4,6 +4,7 @@
 
 export interface Config {
   githubToken: string;
+  githubApiBaseUrl?: string;
 }
 
 /**
@@ -20,7 +21,11 @@ export function loadConfig(): Config {
     );
   }
 
+  // Optional: custom GitHub API base URL for testing
+  const githubApiBaseUrl = process.env.GITHUB_API_BASE_URL;
+
   return {
     githubToken,
+    githubApiBaseUrl,
   };
 }

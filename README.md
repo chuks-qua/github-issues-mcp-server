@@ -5,17 +5,17 @@ An MCP (Model Context Protocol) server that provides tools for managing GitHub i
 ## Features
 
 ### Issue Dependencies
-- **get_blocked_by** - List issues blocking a specific issue
-- **get_blocking** - List issues that an issue is blocking
-- **add_blocking_dependency** - Add a blocking dependency
-- **remove_blocking_dependency** - Remove a blocking dependency
+- **github_get_blocked_by** - List issues blocking a specific issue
+- **github_get_blocking** - List issues that an issue is blocking
+- **github_add_blocking_dependency** - Add a blocking dependency
+- **github_remove_blocking_dependency** - Remove a blocking dependency
 
 ### Sub-Issues
-- **get_parent_issue** - Get the parent of a sub-issue
-- **list_sub_issues** - List all sub-issues of a parent
-- **add_sub_issue** - Add a sub-issue to a parent
-- **remove_sub_issue** - Remove a sub-issue
-- **reprioritize_sub_issue** - Change sub-issue priority order
+- **github_get_parent_issue** - Get the parent of a sub-issue
+- **github_list_sub_issues** - List all sub-issues of a parent
+- **github_add_sub_issue** - Add a sub-issue to a parent
+- **github_remove_sub_issue** - Remove a sub-issue
+- **github_reprioritize_sub_issue** - Change sub-issue priority order
 
 ## Setup
 
@@ -106,6 +106,39 @@ npm run build
 # Run production build
 npm start
 ```
+
+## Verifying Installation
+
+After configuring Claude Desktop, test the server by asking Claude:
+
+> "List the tools from the github-issues server"
+
+Claude should respond with 9 tools (github_get_blocked_by, github_get_blocking, github_add_blocking_dependency, etc.).
+
+### Manual Verification
+
+Test the server starts correctly:
+
+```bash
+# Using GitHub CLI
+GITHUB_TOKEN=$(gh auth token) npx tsx src/index.ts
+
+# Using direct token
+GITHUB_TOKEN=ghp_your_token npx tsx src/index.ts
+```
+
+The server should output startup information. Press `Ctrl+C` to exit.
+
+## Troubleshooting
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| "GITHUB_TOKEN environment variable is required" | Token not set or `gh` not authenticated | Run `gh auth login` or set `GITHUB_TOKEN` directly |
+| "Repository not found" (404) | Token lacks `repo` scope or repo doesn't exist | Ensure token has `repo` scope; verify owner/repo spelling |
+| "Rate limit exceeded" (403) | GitHub API limit hit | Wait 1 hour or use a PAT with higher limits |
+| Server doesn't appear in Claude Desktop | Config file syntax error | Validate JSON syntax; check file location |
+| "Permission denied" on write operations | Token lacks write permissions | Regenerate token with `repo` scope |
+| "Issue not found" for existing issue | Using issue number instead of ID for write ops | Use issue ID (from API or URL) for `*_id` parameters |
 
 ## Example Usage
 

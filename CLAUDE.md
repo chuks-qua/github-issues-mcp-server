@@ -20,6 +20,13 @@ git-relationship-mcp/
 │   └── github/       # GitHub API client
 │       ├── client.ts
 │       └── types.ts
+├── tests/            # Test suites
+│   ├── unit/         # Unit tests for individual modules
+│   ├── integration/  # Integration tests with mocked transport
+│   ├── e2e/          # End-to-end tests via stdio protocol
+│   │   ├── helpers/  # Test utilities (spawn-server, mcp-client)
+│   │   └── mocks/    # MSW handlers for GitHub API
+│   └── fixtures/     # Shared test data
 └── docs/             # Documentation, architecture decisions, API references
 ```
 
@@ -36,6 +43,8 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/).
 
 [optional footer]
 ```
+
+> **Important**: Do NOT add `Co-Authored-By` lines referencing Claude, Anthropic, or any AI assistant to commit messages.
 
 ### Types
 
@@ -66,6 +75,79 @@ feat(tools): add get_issue_relationships tool
 fix(server): handle rate limiting from GitHub API
 docs: update README with setup instructions
 chore(deps): bump @modelcontextprotocol/sdk to 1.2.0
+```
+
+## Test Conventions
+
+### Test File Naming
+
+| Test Type | Location | Naming |
+|-----------|----------|--------|
+| Unit tests | `tests/unit/` | `<module>.test.ts` |
+| Integration tests | `tests/integration/` | `<feature>.test.ts` |
+| E2E tests | `tests/e2e/` | `<scenario>.test.ts` |
+
+### Test Structure
+
+```typescript
+describe('ComponentName', () => {
+  describe('methodName', () => {
+    it('should do X when Y', async () => {
+      // Arrange - set up test data and mocks
+      // Act - call the method under test
+      // Assert - verify the results
+    });
+  });
+});
+```
+
+### Mocking Strategies
+
+| Test Type | Mocking Approach |
+|-----------|------------------|
+| Unit | `vi.mock()` for module mocking |
+| Integration | Mock GitHubClient methods directly |
+| E2E | MSW (Mock Service Worker) for HTTP interception |
+
+### Running Tests
+
+```bash
+npm test              # All tests
+npm run test:unit     # Unit tests only
+npm run test:integration
+npm run test:e2e
+npm run test:coverage # With coverage report
+```
+
+## Pull Request Guidelines
+
+### PR Title Format
+
+Use the same format as commit messages:
+
+```
+feat(tools): add issue search tool
+fix(server): handle edge case in pagination
+```
+
+### PR Description Template
+
+```markdown
+## Summary
+Brief description of changes.
+
+## Changes
+- Bullet points of specific changes
+
+## Testing
+- How to test these changes
+- Which tests were added/modified
+
+## Checklist
+- [ ] Tests pass (`npm test`)
+- [ ] Type check passes (`npm run typecheck`)
+- [ ] Documentation updated (if applicable)
+- [ ] No breaking changes (or documented if any)
 ```
 
 ## Keeping This Document Alive
