@@ -132,23 +132,7 @@ fix(server): handle edge case in pagination
 
 ### PR Description Template
 
-```markdown
-## Summary
-Brief description of changes.
-
-## Changes
-- Bullet points of specific changes
-
-## Testing
-- How to test these changes
-- Which tests were added/modified
-
-## Checklist
-- [ ] Tests pass (`npm test`)
-- [ ] Type check passes (`npm run typecheck`)
-- [ ] Documentation updated (if applicable)
-- [ ] No breaking changes (or documented if any)
-```
+Use the template in [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md). GitHub auto-populates this when creating PRs.
 
 ## Keeping This Document Alive
 
