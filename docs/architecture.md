@@ -101,7 +101,7 @@ The server acts as a bridge between Claude Desktop and the GitHub API, exposing 
 
 | Component | Technology | Rationale |
 |-----------|------------|-----------|
-| Runtime | Node.js 18+ | MCP SDK requirement |
+| Runtime | Node.js 20+ | MCP SDK requirement |
 | Language | TypeScript | Type safety, better tooling, IDE support |
 | MCP SDK | @modelcontextprotocol/sdk | Official MCP implementation |
 | GitHub Client | @octokit/rest | Official GitHub SDK with TypeScript types |

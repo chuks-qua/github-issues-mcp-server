@@ -6,7 +6,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - npm
 - GitHub CLI (`gh`) for testing
 
