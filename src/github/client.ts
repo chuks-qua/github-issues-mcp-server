@@ -14,10 +14,11 @@ import type {
 export class GitHubClient {
   private octokit: Octokit;
 
-  constructor(token: string) {
+  constructor(token: string, baseUrl?: string) {
     this.octokit = new Octokit({
       auth: token,
       userAgent: "github-issues-mcp/1.0.0",
+      ...(baseUrl && { baseUrl }),
     });
   }
 
