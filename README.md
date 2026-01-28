@@ -21,7 +21,7 @@ An MCP (Model Context Protocol) server that provides tools for managing GitHub i
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+
 - GitHub CLI (`gh`) authenticated, OR a GitHub Personal Access Token
 
 ### Installation
